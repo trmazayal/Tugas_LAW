@@ -1,14 +1,14 @@
-body{
-    background-color: #676767;
-}
 
 .kotak {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    background-color: #b4b2b2;
+    padding: 25px;
+    margin: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
 }
 
 textarea {
@@ -51,6 +51,7 @@ input[type="text"] {
 }
 
 select{
+    width: 200px;
     height: 25px;
     margin: 25px;
 }
