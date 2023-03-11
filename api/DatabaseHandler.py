@@ -2,21 +2,22 @@ import os, time
 import psycopg2
 
 def GetNotes(username):
-    cursor.execute("SELECT * from notes WHERE username=(%s);", (username))
+    cursor.execute(f'''SELECT * from notes WHERE username='{username}';''')
     return cursor.fetchall()
 
 def GetNoteByID(note_id):
-    cursor.execute("SELECT * from notes WHERE note_id=(%s);", (note_id))
+    cursor.execute(f'''SELECT * from notes WHERE note_id='{note_id}';''')
     return cursor.fetchone()
 
 def AddNote(note):
-    cursor.execute('''INSERT INTO notes(note_id, title, date, text, username, color) 
-                   VALUES(%s, %s, %s, %s, %s, %s);''', (note.note_id, note.title, note.date, 
-                                                        note.text, note.username, note.color))
+    values = (note.note_id, note.title, note.date, 
+                note.text, note.username, note.color)
+    cursor.execute(f'''INSERT INTO notes(note_id, title, date, text, username, color)
+    VALUES(%s, %s, %s, %s, %s, %s);''', values)
     conn.commit()    
 
 def DeleteNote(note_id):
-    cursor.execute("DELETE FROM notes WHERE note_id=(%s);", (note_id))
+    cursor.execute(f'''DELETE FROM notes WHERE note_id='{note_id}';''')
     conn.commit()
 
 def UpdateNote(note):
@@ -26,13 +27,13 @@ def UpdateNote(note):
 def CreateTable():
     cursor.execute(''' 
         CREATE TABLE IF NOT EXISTS notes(
-            note_id varchar(64) NOT NULL PRIMARY KEY,
-            title varchar(128) NOT NULL,
-            date varchar(64) NOT NULL,
-            text varchar(1024) NOT NULL,
-            username varchar(128) NOT NULL,
-            color varchar(8) NOT NULL
-            ); ''')
+        note_id varchar(64) NOT NULL PRIMARY KEY,
+        title varchar(128) NOT NULL,
+        date varchar(64) NOT NULL,
+        text varchar(1024) NOT NULL,
+        username varchar(128) NOT NULL,
+        color varchar(8) NOT NULL
+    ); ''')
     
     conn.commit()
 
