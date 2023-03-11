@@ -1,6 +1,6 @@
 import uuid
 
-from ORM import Note
+from schemas import Note
 import DatabaseHandler as db
 
 from fastapi import FastAPI
@@ -8,7 +8,7 @@ from fastapi import FastAPI
 app = FastAPI()
 
 db.CreateTable()
-db_cols = [
+DB_COLLUMN = [
     'note_id', 'title', 'date', 
     'text', 'username', 'color'
 ]
@@ -21,7 +21,7 @@ def Home():
 def Notes(user_name: str):
     notes = db.GetNotes(user_name)
     ret = [
-        {x:y for (x,y) in zip(db_cols, row)}
+        {x:y for (x,y) in zip(DB_COLLUMN, row)}
         for row in notes
     ]
     return ret
@@ -29,7 +29,7 @@ def Notes(user_name: str):
 @app.get('/note_id/{note_id}')
 def GetNote(note_id: str):
     note = db.GetNoteByID(note_id)
-    ret = {x:y for (x,y) in zip(db_cols, note)}
+    ret = {x:y for (x,y) in zip(DB_COLLUMN, note)}
     return ret
 
 @app.post('/add_note')
