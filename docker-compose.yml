@@ -10,11 +10,11 @@ services:
         networks:
             - notes_network
 
-    api:
-        build: ./api/.
+    backend:
+        build: ./backend/.
         env_file:
             - api.env
-        command: uvicorn API_Server:app --host api --port 80
+        command: uvicorn API_Server:app --host backend --port 80
         depends_on:
             - db
         networks:
@@ -22,17 +22,17 @@ services:
         ports:
             - 5050:80
     
-    server:
-        build: ./server/.
+    frontend:
+        build: ./frontend/.
         volumes:
-            - ./server/html_files/:/usr/share/nginx/html
+            - ./frontend/templates/:/usr/share/nginx/html
         depends_on:
             - db
-            - api
+            - backend
         networks:
             - notes_network
         ports:
-            - 8000:80
+            - 8080:80
 
 networks:
     notes_network:
