@@ -12,18 +12,21 @@
 </head>
 <body class="container" style="text-align: center; margin-top: 30px;">
     <div class="kotak">
+        <div style="padding-bottom: 20px; padding-top: 20px; text-align: left;">
+            <button class="btn btn-danger" href="#" onclick="history.back();return false" class="back">&lt Back</button>
+        </div> 
         <h2 style="margin-top: 20px;">Edit Note</h2>
         <label for="title">Title</Title>
         <input type="text" id="title">
     
         <br>
-        <textarea class="red" name="text" id="text" cols="50" rows="10"></textarea>
+        <textarea class="red" name="text" id="text" cols="80" rows="10"></textarea>
         <br>
         <select for="color"  id = "color" onchange="ColorChange(this)">
             <option value="red">Red</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
             <option value="yellow">Yellow</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
         </select>
         <br>
         <button type="button" class="btn btn-primary" onclick="submit(note_id)" style="margin-top: 15px;">Edit</button>

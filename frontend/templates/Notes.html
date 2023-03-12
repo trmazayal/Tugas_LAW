@@ -19,15 +19,15 @@
             <div class="row p-3">
                 <div class="col">
                     <a href="/"><button type="button" class="btn btn-primary">Home</button></a>
-                   </div>
-                   <div class="col">
-                     <a href="/NewNote.html"><button type="button" class="btn btn-primary">Create New Note</button></a>
-                   </div>
-
+                </div>
+                <div class="col">
+                    <a href="/NewNote.html"><button type="button" class="btn btn-primary">Create New Note</button></a>
+                </div>
             </div>
+            <hr>    
+            <div id="notes_data" style="margin-left: 200px; margin-right: 200px;"></div>
+
         </div>
-        <hr>    
-        <div id="notes_data"></div>
     </div>
 </body>
 
@@ -56,7 +56,11 @@
     function AddNote(data){
         console.log(data);
         document.getElementById('notes_data').innerHTML += 
-            `<div class="note_container">
+            `<div class="note_container text-center" id="note_${data['note_id']}">
+                <div class="note_container_buttons">
+                    <input type="button" value="Edit" class="btn btn-primary" onclick="Edit('${data['note_id']}')">
+                    <input type="button" value="Delete" class="btn btn-danger" onclick="Delete('${data['note_id']}')">
+                </div>
                 <textarea class="${data['color']}" cols="80" rows="10" readonly="">`+
                     `Title: ${data['title']}\n` + 
                     `Written On: ${data['date']}\n\n` +
@@ -64,10 +68,6 @@
                     `${data['text']}\n`+
                 `</textarea>
                 
-                <div class="note_container_buttons">
-                    <input type="button" value="Edit" class="btn btn-primary" onclick="Edit('${data['note_id']}')">
-                    <input type="button" value="Delete" class="btn btn-danger" onclick="Delete('${data['note_id']}')">
-                </div>
             </div>
             <hr>
         `;
