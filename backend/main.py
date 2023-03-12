@@ -43,7 +43,7 @@ def DeleteNote(note_id: str):
     db.DeleteNote(note_id)
     return {"note_id": note_id}
 
-@app.post('/update_note')
+@app.put('/update_note/{note_id}', response_model=Note)
 def UpdateNote(note: Note):
     db.UpdateNote(note)
     return note

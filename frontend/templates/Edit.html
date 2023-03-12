@@ -26,7 +26,7 @@
             <option value="yellow">Yellow</option>
         </select>
         <br>
-        <button type="button" class="btn btn-primary" onclick="submit()" style="margin-top: 15px;">Edit</button>
+        <button type="button" class="btn btn-primary" onclick="submit(note_id)" style="margin-top: 15px;">Edit</button>
     </div>
 </body>
 <script>
@@ -66,7 +66,7 @@
         document.getElementById('text').className = color;        
     }
     
-    function submit(){
+    function submit(note_id){
         var mandatory = ['title', 'text'];
         var value = {};
         mandatory.forEach(function(x, i){
@@ -78,10 +78,12 @@
             
             value[x] = val;
         });
+
+            
         
         $.ajax({
-            url: '/backend/update_note',
-            method: 'POST',
+            url: '/backend/update_note/'+note_id,
+            method: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({
                 note_id: note_id,
@@ -97,7 +99,6 @@
             }
         });
     }
-    
     
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
