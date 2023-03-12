@@ -41,7 +41,7 @@ def AddNote(note: Note):
 @app.delete('/delete_note/{note_id}')
 def DeleteNote(note_id: str):
     db.DeleteNote(note_id)
-    return 'Deleted '+ note_id
+    return {"note_id": note_id}
 
 @app.post('/update_note')
 def UpdateNote(note: Note):

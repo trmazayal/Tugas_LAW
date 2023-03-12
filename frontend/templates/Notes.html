@@ -75,10 +75,16 @@
 
     function Edit(note_id){
         window.location.href = `/Edit.html?note_id=${note_id}&username=${username}`;
-    }function Delete(note_id){
+    }
+    
+    function Delete(note_id){
         if(confirm('Are you sure you want to delete this note?')){
-            $.get(`/backend/delete/${note_id}`, function(data, status){
-                window.location.href = window.location.href;
+            $.ajax({
+                url: '/backend/delete_note/'+note_id,
+                type: 'DELETE',
+                success: function(result) {
+                    window.location.href = `/Notes.html?username=${username}`;
+                }
             });
         }
     }

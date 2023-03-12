@@ -21,8 +21,9 @@ def DeleteNote(note_id):
     conn.commit()
 
 def UpdateNote(note):
-    DeleteNote(note.note_id)
-    AddNote(note)
+    values = (note.title, note.date, note.text, note.color, note.note_id)
+    cursor.execute(f'''UPDATE notes SET title=%s, date=%s, text=%s, color=%s WHERE note_id=%s;''', values)
+    conn.commit()
 
 def CreateTable():
     cursor.execute(''' 
