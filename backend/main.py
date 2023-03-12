@@ -1,7 +1,7 @@
 import uuid
 
 from schemas import Note
-import DatabaseHandler as db
+import database as db
 
 from fastapi import FastAPI
 
@@ -38,7 +38,7 @@ def AddNote(note: Note):
     db.AddNote(note)
     return note
 
-@app.get('/delete/{note_id}')
+@app.delete('/delete_note/{note_id}')
 def DeleteNote(note_id: str):
     db.DeleteNote(note_id)
     return 'Deleted '+ note_id
