@@ -11,7 +11,6 @@ def CreateTable():
         username varchar(128) NOT NULL,
         color varchar(8) NOT NULL,
         PRIMARY KEY (note_id)); ''')
-    
     connection.commit()
 
 while True:
