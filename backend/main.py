@@ -1,9 +1,7 @@
-import uuid
-
+from fastapi import FastAPI
 from models import Note
 import database as db
-
-from fastapi import FastAPI
+import uuid
 
 app = FastAPI()
 
@@ -13,6 +11,12 @@ DB_COLLUMN = [
     'text', 'username', 'color'
 ]
 
+def fetchall(notes):
+    return [
+        {x:y for (x,y) in zip(DB_COLLUMN, row)}
+        for row in notes
+    ]
+
 @app.get('/')
 def Home():
     return "Service is Running..."
@@ -20,17 +24,12 @@ def Home():
 @app.get('/notes/{user_name}',tags=["Notes"])
 def Notes(user_name: str):
     notes = db.GetNotes(user_name)
-    ret = [
-        {x:y for (x,y) in zip(DB_COLLUMN, row)}
-        for row in notes
-    ]
-    return ret
+    return fetchall(notes)
 
 @app.get('/note_id/{note_id}', tags=["Notes"])
 def GetNote(note_id: str):
     note = db.GetNoteByID(note_id)
-    ret = {x:y for (x,y) in zip(DB_COLLUMN, note)}
-    return ret
+    return {x:y for (x,y) in zip(DB_COLLUMN, note)}
 
 @app.post('/add_note', tags=["Notes"])
 def AddNote(note: Note):
