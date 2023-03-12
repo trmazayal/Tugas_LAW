@@ -20,7 +20,16 @@ Run the following commands to start the app:
 ## Endpoints
 
     - GET /notes/{user_name}
+        - Returns all the notes for the user
+             - user_name: The name of the user
     - GET /notes/{note_id}
+        - Returns the note with the given id
+             - note_id: The id of the note
     - POST /add_notes
+        - Adds a new note
     - PUT /delete_note/{note_id}
+        - Deletes the note with the given id
+             - note_id: The id of the note
     - DELETE /update_note/{note_id}
+        - Updates the note with the given id
+             - note_id: The id of the note
