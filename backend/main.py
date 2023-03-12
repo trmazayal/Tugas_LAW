@@ -1,6 +1,6 @@
 import uuid
 
-from schemas import Note
+from models import Note
 import database as db
 
 from fastapi import FastAPI
