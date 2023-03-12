@@ -20,7 +20,7 @@ Run the following commands to start the app:
 ## Endpoints
 
     - GET /notes/{user_name}
-        - Returns all the notes for the user
+        - Returns all the notes for the specific user
             - user_name: The name of the user
     - GET /notes/{note_id}
         - Returns the note with the given id
