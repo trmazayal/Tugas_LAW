@@ -14,7 +14,7 @@ services:
         build: ./backend/.
         env_file:
             - api.env
-        command: uvicorn API_Server:app --host backend --port 80
+        command: uvicorn main:app --host backend --port 80
         depends_on:
             - db
         networks:
